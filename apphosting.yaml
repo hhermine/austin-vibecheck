@@ -7,18 +7,15 @@ runConfig:
   memoryMiB: 2048
 
 env:
-  # Hardcoded values with CORRECT separate keys
   - variable: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-    value: "" # Maps Key
-  
+    secret: googleMapsApiKey
   - variable: NEXT_PUBLIC_GEMINI_API_KEY
-    value: "" # Gemini Key
-  
-  - variable: GEMINI_API_KEY
-    value: "" # Gemini Key (Server side)
+    secret: geminiApiKey
 
+  - variable: GEMINI_API_KEY
+    secret: geminiApiKey
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: "" # Firebase Key
+    secret: firebaseApiKey
 
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
     value: "workshop-starter-480301"
