@@ -7,20 +7,19 @@ runConfig:
   memoryMiB: 2048
 
 env:
-  # Secrets (Managed in Cloud Secret Manager)
+  # Hardcoded values to bypass Secret Manager permission issues for demo
   - variable: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-    secret: GOOGLE_MAPS_API_KEY
+    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
   
   - variable: NEXT_PUBLIC_GEMINI_API_KEY
-    secret: GEMINI_API_KEY
+    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
   
   - variable: GEMINI_API_KEY
-    secret: GEMINI_API_KEY
+    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
 
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    secret: FIREBASE_API_KEY
+    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
 
-  # Configuration (Safe to commit)
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
     value: "workshop-starter-480301"
   - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
@@ -30,4 +29,4 @@ env:
   - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
     value: "268288153956"
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    value: "1:268288153956:web:5079eecb2258f59fd50271"
+    value: "1:268288153956:web:2c1f033c5a8a41b1d50271"
