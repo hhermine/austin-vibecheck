@@ -9,16 +9,16 @@ runConfig:
 env:
   # Hardcoded values with CORRECT separate keys
   - variable: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng" # Maps Key
+    value: "" # Maps Key
   
   - variable: NEXT_PUBLIC_GEMINI_API_KEY
-    value: "AIzaSyBaTY3Cq4FXnjoZ2sxKh0TvCUlU_LBWjtY" # Gemini Key
+    value: "" # Gemini Key
   
   - variable: GEMINI_API_KEY
-    value: "AIzaSyBaTY3Cq4FXnjoZ2sxKh0TvCUlU_LBWjtY" # Gemini Key (Server side)
+    value: "" # Gemini Key (Server side)
 
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E" # Firebase Key
+    value: "" # Firebase Key
 
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
     value: "workshop-starter-480301"
