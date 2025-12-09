@@ -1,22 +1,20 @@
 // src/app/api/analyze-vibe/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { VertexAI } from "@google-cloud/vertexai";
 import { adminDb } from "@/lib/firebase-admin"; // Use Admin SDK
 import { logEvent, logError } from "@/lib/server-logger";
 
-const apiKey = process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey || "");
+// Initialize Vertex AI
+// We use us-central1 as a safe default for Vertex AI model availability
+const project = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "workshop-starter-480301";
+const location = "us-central1"; 
+const vertex_ai = new VertexAI({ project: project, location: location });
 
 export async function POST(req: NextRequest) {
   const startTime = Date.now();
   let locationId = "unknown";
 
   try {
-    if (!apiKey) {
-        logError("Genkit Flow Failed: Missing API Key", { flow: "analyzeVibe" });
-        return NextResponse.json({ error: "Server configuration error: Missing API Key" }, { status: 500 });
-    }
-
     const { id, name, description, photoUrl } = await req.json();
     locationId = id;
 
@@ -31,7 +29,8 @@ export async function POST(req: NextRequest) {
     }
 
     // STRICTLY using gemini-2.5-pro as mandated by user
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+    // Using Vertex AI instantiation
+    const model = vertex_ai.getGenerativeModel({ model: "gemini-2.5-pro" });
 
     let prompt = `Analyze this place in Austin, Texas called "${name}".
     Description provided: "${description}".
@@ -51,7 +50,7 @@ export async function POST(req: NextRequest) {
     let result;
     
     try {
-        const parts: any[] = [prompt];
+        const parts: any[] = [{ text: prompt }];
 
         if (photoUrl && photoUrl.startsWith("data:image")) {
             const base64Data = photoUrl.split(",")[1];
@@ -65,16 +64,22 @@ export async function POST(req: NextRequest) {
             });
         }
 
-        result = await model.generateContent(parts);
+        result = await model.generateContent({
+            contents: [{ role: 'user', parts }]
+        });
         
     } catch (e: any) {
-        logError("Gemini Generation Failed", e, { locationId, model: "gemini-2.5-pro" });
-        // Returning specific error message to client for visibility
-        return NextResponse.json({ error: `Gemini Error: ${e.message}` }, { status: 500 });
+        logError("Vertex AI Generation Failed", e, { locationId, model: "gemini-2.5-pro" });
+        return NextResponse.json({ error: `Vertex AI Error: ${e.message}` }, { status: 500 });
     }
 
-    const responseText = result.response.text();
+    // Vertex AI response structure is slightly different but usually has candidates
+    const responseText = result.response.candidates?.[0].content.parts[0].text;
     
+    if (!responseText) {
+        throw new Error("Empty response from Vertex AI");
+    }
+
     const cleanJson = responseText.replace(/```json/g, "").replace(/```/g, "").trim();
     
     let aiData;

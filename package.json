@@ -11,6 +11,7 @@
   "dependencies": {
     "@google-cloud/bigquery": "^8.1.1",
     "@google-cloud/logging-winston": "^6.0.1",
+    "@google-cloud/vertexai": "^1.10.0",
     "@google/generative-ai": "^0.24.1",
     "@googlemaps/js-api-loader": "^1.16.6",
     "@radix-ui/react-avatar": "^1.1.11",
