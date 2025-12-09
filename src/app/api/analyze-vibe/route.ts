@@ -1,8 +1,7 @@
 // src/app/api/analyze-vibe/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { db } from "@/lib/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { adminDb } from "@/lib/firebase-admin"; // Use Admin SDK
 import { logEvent, logError } from "@/lib/server-logger";
 
 const apiKey = process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
@@ -90,8 +89,8 @@ export async function POST(req: NextRequest) {
         };
     }
 
-    const locRef = doc(db, "locations", id);
-    await updateDoc(locRef, {
+    // Use Admin SDK to update (Bypasses security rules)
+    await adminDb.collection("locations").doc(id).update({
       ai_vibe_summary: aiData.vibeSummary,
       vibe_score: aiData.aiScore, 
       hashtags: aiData.hashtags,
