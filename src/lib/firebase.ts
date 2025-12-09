@@ -5,8 +5,8 @@ import { getStorage } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const firebaseConfig = {
-  // Updated to the correct key from your screenshot
-  apiKey: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng",
+  // Updated to the correct Firebase-specific key you provided
+  apiKey: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E",
   authDomain: "workshop-starter-480301.firebaseapp.com",
   projectId: "workshop-starter-480301",
   storageBucket: "workshop-starter-480301.firebasestorage.app",

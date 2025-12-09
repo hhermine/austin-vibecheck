@@ -7,18 +7,18 @@ runConfig:
   memoryMiB: 2048
 
 env:
-  # Hardcoded values to ensure correct key is used in production
+  # Hardcoded values with CORRECT separate keys
   - variable: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng"
+    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng" # Maps Key
   
   - variable: NEXT_PUBLIC_GEMINI_API_KEY
-    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng" # Assuming Gemini is on same project/key
+    value: "AIzaSyBaTY3Cq4FXnjoZ2sxKh0TvCUlU_LBWjtY" # Gemini Key
   
   - variable: GEMINI_API_KEY
-    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng"
+    value: "AIzaSyBaTY3Cq4FXnjoZ2sxKh0TvCUlU_LBWjtY" # Gemini Key (Server side)
 
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng"
+    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E" # Firebase Key
 
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
     value: "workshop-starter-480301"
