@@ -7,18 +7,18 @@ runConfig:
   memoryMiB: 2048
 
 env:
-  # Hardcoded values to bypass Secret Manager permission issues for demo
+  # Hardcoded values to ensure correct key is used in production
   - variable: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
+    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng"
   
   - variable: NEXT_PUBLIC_GEMINI_API_KEY
-    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
+    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng" # Assuming Gemini is on same project/key
   
   - variable: GEMINI_API_KEY
-    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
+    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng"
 
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E"
+    value: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng"
 
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
     value: "workshop-starter-480301"

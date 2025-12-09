@@ -5,7 +5,8 @@ import { getStorage } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCei3PaasaKTO69Qt0vBisGE-4wZCvyz2E",
+  // Updated to the correct key from your screenshot
+  apiKey: "AIzaSyAsZpxJjFfUCGcqJC0WfNKhl_u-RPse9ng",
   authDomain: "workshop-starter-480301.firebaseapp.com",
   projectId: "workshop-starter-480301",
   storageBucket: "workshop-starter-480301.firebasestorage.app",
@@ -22,7 +23,6 @@ if (typeof window !== "undefined") {
   try {
       const recaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
       
-      // Only initialize if a key is present and not the default placeholder text we might have used in docs
       if (recaptchaKey && recaptchaKey !== "PLACEHOLDER_KEY") {
           initializeAppCheck(app, {
             provider: new ReCaptchaV3Provider(recaptchaKey),
@@ -30,7 +30,6 @@ if (typeof window !== "undefined") {
           });
       }
   } catch (e) {
-      // Silently fail or log to analytics in prod
       // console.error("App Check initialization failed", e);
   }
 }
